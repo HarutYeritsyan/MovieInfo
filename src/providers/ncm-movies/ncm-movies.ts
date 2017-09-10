@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 
 import { Person } from '../../models/person';
+import { Movie } from '../../models/movie';
 
 /*
   Generated class for the NcmMoviesProvider provider.
@@ -23,5 +24,10 @@ export class NcmMoviesProvider {
   getPerson(person_id: number):Observable<Person> {
   	return this.http.get(`${this.tmdbApiUrl}/person/${person_id}?api_key=${this.tmbdApiKey}&language=en-US`)
   		.map(res => <Person>res.json());
+  }
+
+  getMoviesOfPerson(person_id: number):Observable<Movie[]> {
+  	return this.http.get(`${this.tmdbApiUrl}/person/${person_id}/movie_credits?api_key=${this.tmbdApiKey}&language=en-US`)
+  		.map(res => <Movie[]>(res.json().cast));
   }
 }
