@@ -1,5 +1,12 @@
 {
   "name": "NCM",
   "app_id": "",
-  "type": "ionic-angular"
+  "type": "ionic-angular",
+  "proxies": [{
+  	"path": "/3",
+  	"proxyUrl": "https://api.themoviedb.org/"
+  }],
+  "integrations": {
+    "cordova": {}
+  }
 }
