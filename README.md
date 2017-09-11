@@ -1,1 +1,1 @@
-A list of the movies where Nicolas Cage has acted. This application is intended to be a demonstration of my knowledges and habilities as a mobile apps developer and it will not be published on any app market.
+A list of the movies where Nicolas Cage has acted. This application is intended to be a demonstration of my knowledges and abilities as a mobile apps developer and it will not be published on any app market.
