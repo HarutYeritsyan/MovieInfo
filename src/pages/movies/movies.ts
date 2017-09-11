@@ -3,8 +3,11 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { NcmMoviesProvider } from '../../providers/ncm-movies/ncm-movies';
 
+import { MovieDetailsPage } from '../movie-details/movie-details'
+
 import { Person } from '../../models/person';
 import { Movie } from '../../models/movie';
+
 
 /**
  * Generated class for the MoviesPage page.
@@ -19,8 +22,8 @@ import { Movie } from '../../models/movie';
   templateUrl: 'movies.html',
 })
 export class MoviesPage {
-	person: Person;
 	person_id = 2963; //hardcoded person_id for Nicolas Cage
+	person: Person;
 	movies: Movie[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private ncmMoviesProvider: NcmMoviesProvider) {
@@ -31,11 +34,13 @@ export class MoviesPage {
   	ncmMoviesProvider.getMoviesOfPerson(this.person_id).subscribe(movies => {
   		this.movies = movies;
   	});
-  	console.log(this.movies);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MoviesPage');
   }
 
+  goToDetails(movie_id: number) {
+  	this.navCtrl.push(MovieDetailsPage, { movie_id: movie_id });
+  }
 }

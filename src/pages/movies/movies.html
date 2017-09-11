@@ -14,11 +14,11 @@
 
 
 <ion-content padding>
-	<p>
-		{{ person?.name }}
-	</p>
+	<ion-item *ngIf="movies != undefined && movies.length == 0">
+			<p style="color:#999">Movies not found</p>
+	</ion-item>
 	<ion-list>
-		<ion-item *ngFor="let m of movies">
+		<ion-item *ngFor="let m of movies" (click)="goToDetails(m.id)">
 			{{m?.original_title}}
 		</ion-item>
 	</ion-list>

@@ -5,6 +5,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
 import { MoviesPage } from '../pages/movies/movies';
+import { MovieDetailsPage } from '../pages/movie-details/movie-details';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -13,7 +14,8 @@ import { NcmMoviesProvider } from '../providers/ncm-movies/ncm-movies';
 @NgModule({
   declarations: [
     MyApp,
-    MoviesPage
+    MoviesPage,
+    MovieDetailsPage
   ],
   imports: [
     BrowserModule,
@@ -23,7 +25,8 @@ import { NcmMoviesProvider } from '../providers/ncm-movies/ncm-movies';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    MoviesPage
+    MoviesPage,
+    MovieDetailsPage
   ],
   providers: [
     StatusBar,

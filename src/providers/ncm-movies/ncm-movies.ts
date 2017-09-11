@@ -5,6 +5,7 @@ import 'rxjs/add/operator/map';
 
 import { Person } from '../../models/person';
 import { Movie } from '../../models/movie';
+import { ImageUrlComponents } from '../../models/image-url-components';
 
 /*
   Generated class for the NcmMoviesProvider provider.
@@ -29,5 +30,15 @@ export class NcmMoviesProvider {
   getMoviesOfPerson(person_id: number):Observable<Movie[]> {
   	return this.http.get(`${this.tmdbApiUrl}/person/${person_id}/movie_credits?api_key=${this.tmbdApiKey}&language=en-US`)
   		.map(res => <Movie[]>(res.json().cast));
+  }
+
+  getMovieDetails(movie_id: number):Observable<Movie> {
+  	return this.http.get(`${this.tmdbApiUrl}/movie/${movie_id}?api_key=${this.tmbdApiKey}&language=en-US`)
+  		.map(res => <Movie>res.json());
+  }
+
+  getPosterUrlComponents():Observable<ImageUrlComponents> {
+  	return this.http.get(`${this.tmdbApiUrl}/configuration?api_key=${this.tmbdApiKey}`)
+  		.map(res => <ImageUrlComponents>(res.json().images));
   }
 }
