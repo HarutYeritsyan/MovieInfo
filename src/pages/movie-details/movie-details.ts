@@ -28,7 +28,7 @@ export class MovieDetailsPage {
   	ncmMoviesProvider.getMovieDetails(this.movie_id).subscribe(movie => {
   		this.movie = movie;
 
-  		ncmMoviesProvider.getPosterUrlComponents().subscribe(imageUrlComponents => {
+  		ncmMoviesProvider.getImageUrlComponents().subscribe(imageUrlComponents => {
   			let sizeIdx = Math.floor(imageUrlComponents.poster_sizes.length / 2) - 1; //get an average size
   			if(sizeIdx >= 0 && this.movie.poster_path != null) {
   				let size = imageUrlComponents.poster_sizes[sizeIdx];

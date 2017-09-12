@@ -37,7 +37,7 @@ export class NcmMoviesProvider {
   		.map(res => <Movie>res.json());
   }
 
-  getPosterUrlComponents():Observable<ImageUrlComponents> {
+  getImageUrlComponents():Observable<ImageUrlComponents> {
   	return this.http.get(`${this.tmdbApiUrl}/configuration?api_key=${this.tmbdApiKey}`)
   		.map(res => <ImageUrlComponents>(res.json().images));
   }
