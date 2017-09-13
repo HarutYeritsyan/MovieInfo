@@ -1,0 +1,34 @@
+<!--
+  Generated template for the BiographyPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+  	<button ion-button icon-only menuToggle>
+		<ion-icon name="menu"></ion-icon>
+	</button>
+    <ion-title>Biography</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+	<ion-list>
+		<div class="row">
+			<img [src]="person_profile_url" style="margin:10px auto;">
+		</div>
+		<ion-item>
+			{{person?.name}}
+		</ion-item>
+		<ion-item>
+			{{person?.birthday || "N/A"}} - {{person?.deathday || "N/A"}}
+		</ion-item>
+		<p style="padding:5px">
+			{{person?.biography}}
+		</p>
+	</ion-list>
+</ion-content>

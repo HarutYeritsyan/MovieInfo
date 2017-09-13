@@ -22,19 +22,17 @@ import { Movie } from '../../models/movie';
   templateUrl: 'movies.html',
 })
 export class MoviesPage {
-	person_id = 2963; //hardcoded person_id for Nicolas Cage
-	person: Person;
+	person_id: number;
 	movies: Movie[];
 	originalMovies: Movie[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private ncmMoviesProvider: NcmMoviesProvider) {
-  	ncmMoviesProvider.getPerson(this.person_id).subscribe(person => {
-  		this.person = person;
-  	});
-
-  	ncmMoviesProvider.getMoviesOfPerson(this.person_id).subscribe(movies => {
-  		this.movies = movies;
-  		this.originalMovies = movies;
+  	ncmMoviesProvider.getPersonId().subscribe(person_id => {
+  		this.person_id = person_id;
+  		ncmMoviesProvider.getMoviesOfPerson(this.person_id).subscribe(movies => {
+  			this.movies = movies;
+  			this.originalMovies = movies;
+  		});
   	});
   }
 

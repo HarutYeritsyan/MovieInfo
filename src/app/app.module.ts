@@ -6,6 +6,7 @@ import { MyApp } from './app.component';
 
 import { MoviesPage } from '../pages/movies/movies';
 import { MovieDetailsPage } from '../pages/movie-details/movie-details';
+import { BiographyPage } from '../pages/biography/biography';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -15,7 +16,8 @@ import { NcmMoviesProvider } from '../providers/ncm-movies/ncm-movies';
   declarations: [
     MyApp,
     MoviesPage,
-    MovieDetailsPage
+    MovieDetailsPage,
+    BiographyPage
   ],
   imports: [
     BrowserModule,
@@ -26,7 +28,8 @@ import { NcmMoviesProvider } from '../providers/ncm-movies/ncm-movies';
   entryComponents: [
     MyApp,
     MoviesPage,
-    MovieDetailsPage
+    MovieDetailsPage,
+    BiographyPage
   ],
   providers: [
     StatusBar,
