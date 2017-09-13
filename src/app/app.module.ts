@@ -11,6 +11,8 @@ import { BiographyPage } from '../pages/biography/biography';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { NcmMoviesProvider } from '../providers/ncm-movies/ncm-movies';
+import { TransformOutputProvider } from '../providers/transform-output/transform-output';
+import { LanguageNameParserProvider } from '../providers/language-name-parser/language-name-parser';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { NcmMoviesProvider } from '../providers/ncm-movies/ncm-movies';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    NcmMoviesProvider
+    NcmMoviesProvider,
+    TransformOutputProvider,
+    LanguageNameParserProvider
   ]
 })
 export class AppModule {}

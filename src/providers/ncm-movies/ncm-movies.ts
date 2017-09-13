@@ -7,6 +7,8 @@ import { Person } from '../../models/person';
 import { Movie } from '../../models/movie';
 import { ImageUrlComponents } from '../../models/image-url-components';
 
+import { TransformOutputProvider } from '../transform-output/transform-output';
+
 /*
   Generated class for the NcmMoviesProvider provider.
 
@@ -21,7 +23,7 @@ export class NcmMoviesProvider {
 	language = "en-US";
 	external_source = "imdb_id";
 
-  constructor(public http: Http) {
+  constructor(public http: Http, private transformOutputProvider: TransformOutputProvider) {
     console.log('Hello NcmMoviesProvider Provider');
   }
 
@@ -32,17 +34,19 @@ export class NcmMoviesProvider {
 
   getPerson(person_id: number):Observable<Person> {
   	return this.http.get(`${this.tmdbApiUrl}/person/${person_id}?api_key=${this.tmbdApiKey}&language=${this.language}`)
-  		.map(res => <Person>res.json());
+  		.map(res => this.transformOutputProvider.transformPerson(<Person>res.json()) );
   }
 
   getMoviesOfPerson(person_id: number):Observable<Movie[]> {
   	return this.http.get(`${this.tmdbApiUrl}/person/${person_id}/movie_credits?api_key=${this.tmbdApiKey}&language=${this.language}`)
-  		.map(res => <Movie[]>(res.json().cast));
+  		.map(res => (<Movie[]>(res.json().cast))
+  				.map(movie => this.transformOutputProvider.transformMovie(movie)) 
+  		);
   }
 
   getMovieDetails(movie_id: number):Observable<Movie> {
   	return this.http.get(`${this.tmdbApiUrl}/movie/${movie_id}?api_key=${this.tmbdApiKey}&language=${this.language}`)
-  		.map(res => <Movie>res.json());
+  		.map(res => this.transformOutputProvider.transformMovie(<Movie>res.json()));
   }
 
   getImageUrlComponents():Observable<ImageUrlComponents> {
