@@ -41,4 +41,12 @@ export class NcmMoviesProvider {
   	return this.http.get(`${this.tmdbApiUrl}/configuration?api_key=${this.tmbdApiKey}`)
   		.map(res => <ImageUrlComponents>(res.json().images));
   }
+
+  searchMoviesOfPerson(person_id: number, term: string):Observable<Movie[]> {
+  	//filter the results of moviesOfPerson
+  	return this.http.get(`${this.tmdbApiUrl}/person/${person_id}/movie_credits?api_key=${this.tmbdApiKey}&language=en-US`)
+  		.map(res => (<Movie[]>(res.json().cast)).filter(item => {
+  			return item.original_title.toLowerCase().search(term.toLowerCase()) != -1;
+  		}));
+  }
 }

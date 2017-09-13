@@ -25,6 +25,7 @@ export class MoviesPage {
 	person_id = 2963; //hardcoded person_id for Nicolas Cage
 	person: Person;
 	movies: Movie[];
+	originalMovies: Movie[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private ncmMoviesProvider: NcmMoviesProvider) {
   	ncmMoviesProvider.getPerson(this.person_id).subscribe(person => {
@@ -33,6 +34,7 @@ export class MoviesPage {
 
   	ncmMoviesProvider.getMoviesOfPerson(this.person_id).subscribe(movies => {
   		this.movies = movies;
+  		this.originalMovies = movies;
   	});
   }
 
@@ -42,5 +44,18 @@ export class MoviesPage {
 
   goToDetails(movie_id: number) {
   	this.navCtrl.push(MovieDetailsPage, { movie_id: movie_id });
+  }
+
+  search(searchEvent) {
+  	let term = searchEvent.target.value;
+  	//if search term has 1 or more character, call the API
+  	//else, show the original list of Movies
+  	if(term.trim() != '' && term.trim().length > 0){
+  		this.ncmMoviesProvider.searchMoviesOfPerson(this.person_id, term).subscribe(movies => {
+  			this.movies = movies;
+  		});
+  	} else {
+  		this.movies = this.originalMovies;
+  	}
   }
 }
