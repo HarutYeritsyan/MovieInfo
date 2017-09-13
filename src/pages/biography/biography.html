@@ -1,5 +1,5 @@
 <!--
-  Generated template for the MovieDetailsPage page.
+  Generated template for the BiographyPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
@@ -7,7 +7,10 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{movie?.original_title}}</ion-title>
+  	<button ion-button icon-only menuToggle>
+		<ion-icon name="menu"></ion-icon>
+	</button>
+    <ion-title>Biography</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -16,19 +19,16 @@
 <ion-content padding>
 	<ion-list>
 		<div class="row">
-			<img [src]="movie_poster_url" style="margin:10px auto;">
+			<img [src]="person_profile_url" style="margin:10px auto;">
 		</div>
 		<ion-item>
-			{{movie?.original_title}}
+			{{person?.name}}
 		</ion-item>
 		<ion-item>
-			{{movie?.release_date}}
-		</ion-item>
-		<ion-item>
-			{{movie?.original_language}}
+			{{person?.birthday}} - {{person?.deathday}}
 		</ion-item>
 		<p class="overview" style="padding:5px">
-			{{movie?.overview}}
+			{{person?.biography}}
 		</p>
 	</ion-list>
 </ion-content>

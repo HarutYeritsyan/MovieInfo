@@ -25,6 +25,7 @@ export class MovieDetailsPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private ncmMoviesProvider: NcmMoviesProvider) {
   	this.movie_id = navParams.get('movie_id');
+    
   	ncmMoviesProvider.getMovieDetails(this.movie_id).subscribe(movie => {
   		this.movie = movie;
 

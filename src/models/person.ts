@@ -4,4 +4,5 @@ export interface Person {
 	birthday: string;
 	deathday: string;
 	biography: string;
+	profile_path: string;
 }

@@ -6,16 +6,20 @@ import { MyApp } from './app.component';
 
 import { MoviesPage } from '../pages/movies/movies';
 import { MovieDetailsPage } from '../pages/movie-details/movie-details';
+import { BiographyPage } from '../pages/biography/biography';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { NcmMoviesProvider } from '../providers/ncm-movies/ncm-movies';
+import { TransformOutputProvider } from '../providers/transform-output/transform-output';
+import { LanguageNameParserProvider } from '../providers/language-name-parser/language-name-parser';
 
 @NgModule({
   declarations: [
     MyApp,
     MoviesPage,
-    MovieDetailsPage
+    MovieDetailsPage,
+    BiographyPage
   ],
   imports: [
     BrowserModule,
@@ -26,13 +30,16 @@ import { NcmMoviesProvider } from '../providers/ncm-movies/ncm-movies';
   entryComponents: [
     MyApp,
     MoviesPage,
-    MovieDetailsPage
+    MovieDetailsPage,
+    BiographyPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    NcmMoviesProvider
+    NcmMoviesProvider,
+    TransformOutputProvider,
+    LanguageNameParserProvider
   ]
 })
 export class AppModule {}
