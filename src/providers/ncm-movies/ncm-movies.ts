@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/mergeMap';
 
 import { Person } from '../../models/person';
 import { Movie } from '../../models/movie';
@@ -43,6 +44,21 @@ export class NcmMoviesProvider {
   				.map(movie => this.transformOutputProvider.transformMovie(movie)) 
   		);
   }
+
+  //getPersonId + getMoviesOfPerson
+  getMoviesOfPersonChained():Observable<Movie[]> {
+    //getPersonId from external_id
+    return this.http.get(`${this.tmdbApiUrl}/find/${this.imdb_id}?api_key=${this.tmbdApiKey}&language=${this.language}&external_source=${this.external_source}`)
+      .map(res => (<Person[]>res.json().person_results)[0].id)
+        //getMoviesOfPerson
+        .flatMap(person_id => {
+          return this.http.get(`${this.tmdbApiUrl}/person/${person_id}/movie_credits?api_key=${this.tmbdApiKey}&language=${this.language}`)
+            //return Observable for the list of Movies of the actor
+            .map(res => (<Movie[]>(res.json().cast))
+              .map(movie => this.transformOutputProvider.transformMovie(movie)) 
+            );
+        })
+  } 
 
   getMovieDetails(movie_id: number):Observable<Movie> {
   	return this.http.get(`${this.tmdbApiUrl}/movie/${movie_id}?api_key=${this.tmbdApiKey}&language=${this.language}`)

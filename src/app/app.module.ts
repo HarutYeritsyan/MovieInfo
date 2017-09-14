@@ -13,6 +13,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { NcmMoviesProvider } from '../providers/ncm-movies/ncm-movies';
 import { TransformOutputProvider } from '../providers/transform-output/transform-output';
 import { LanguageNameParserProvider } from '../providers/language-name-parser/language-name-parser';
+import { FavoriteMoviesProvider } from '../providers/favorite-movies/favorite-movies';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { LanguageNameParserProvider } from '../providers/language-name-parser/la
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     NcmMoviesProvider,
     TransformOutputProvider,
-    LanguageNameParserProvider
+    LanguageNameParserProvider,
+    FavoriteMoviesProvider
   ]
 })
 export class AppModule {}
